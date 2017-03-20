@@ -66,10 +66,10 @@ tasks.set('copy', () => cpy(['public/**/*.*'], 'build', { parents: true }));
 tasks.set('appsettings', () => new Promise(resolve => {
   const environments = ['Production', 'Development'];
   let count = environments.length;
-  const source = require('./server/appsettings.json'); // eslint-disable-line global-require
+  const source = require('./appsettings.json'); // eslint-disable-line global-require
   delete source.Logging;
   environments.forEach(env => {
-    const filename = path.resolve(__dirname, `./server/appsettings.${env}.json`);
+    const filename = path.resolve(__dirname, `./appsettings.${env}.json`);
     try {
       fs.writeFileSync(filename, JSON.stringify(source, null, '  '), { flag: 'wx' });
     } catch (err) {} // eslint-disable-line no-empty
@@ -167,7 +167,7 @@ tasks.set('start', () => {
         // Launch ASP.NET Core server after the initial bundling is complete
         if (++count === 1) {
           const options = {
-            cwd: path.resolve(__dirname, './server/'),
+            cwd: path.resolve(__dirname, './'),
             stdio: ['ignore', 'pipe', 'inherit'],
             env: Object.assign({}, process.env, {
               ASPNETCORE_ENVIRONMENT: 'Development',
