@@ -93,7 +93,7 @@ namespace Server
         public static void Main()
         {
             var cwd = Directory.GetCurrentDirectory();
-            var web = Path.GetFileName(cwd) == "server" ? "../public" : "public";
+            var web = Path.GetFileName(cwd) == "server" ? "../wwwroot" : "wwwroot";
 
             var host = new WebHostBuilder()
                 .UseContentRoot(Directory.GetCurrentDirectory())
